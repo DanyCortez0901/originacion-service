@@ -47,7 +47,7 @@ public class ClienteNotificacionPromotor {
 
 		try {
 			clienteRest.exchange(url, HttpMethod.POST, entity, String.class);
-		} catch (RestClientException e) {
+		} catch (Exception e) {
 			log.error("hubo un error al notificar al promotor: {}", e.getMessage());
 		} 
 
