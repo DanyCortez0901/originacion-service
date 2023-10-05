@@ -58,7 +58,7 @@ public class OriginacionServiceImpl implements IOriginacionService {
 	/**
 	 * Metodo que inicia las operaciones necesarias para generar la solicitud
 	 * 
-	 * @param amortaRequest {@link AltaSolicitudRequest} Parametro de entrada
+	 * @param request {@link AltaSolicitudRequest} Parametro de entrada
 	 *                      que tiene un conjunto de atributos necesarios para el
 	 *                      inicio de las operaciones.
 	 * @return {@link JsonObject} Respuesta en formato JSON
@@ -96,6 +96,17 @@ public class OriginacionServiceImpl implements IOriginacionService {
 		
 		return resultados;
 	}
+	
+	
+	/**
+	 * Metodo que cambia el estatus de la solicitud.
+	 * 
+	 * @param request {@link EstatusSolicitudRequest} Parametro de entrada
+	 *                      que tiene un conjunto de atributos necesarios para modificar 
+	 *                      la solicitud ya registrada
+	 * @return {@link JsonObject} Respuesta en formato JSON
+	 * @throws {@link EntityNotFoundException}
+	 */
 	@Override
 	public JsonObject modificarEstatus(EstatusSolicitudRequest request) {
 		JsonObject resultados = new JsonObject();
@@ -137,6 +148,16 @@ public class OriginacionServiceImpl implements IOriginacionService {
 		resultados.put("Mensaje", "Solicitud encontrada en log de errores");
 		return resultados;
 	}
+	
+	
+	/**
+	 * Metodo que dispersa un credito.
+	 * 
+	 * @param request {@link DispersionRequest} Parametro de entrada
+	 *                      que tiene un conjunto de atributos necesarios para dispersar una solicitud
+	 * @return {@link JsonObject} Respuesta en formato JSON
+	 * @throws {@link OriginacionException}
+	 */
 	@Override
 	public JsonObject dispersion(DispersionRequest request) {
 		JsonObject resultados = new JsonObject();	
@@ -169,6 +190,14 @@ public class OriginacionServiceImpl implements IOriginacionService {
 		return resultados;
 	}
 
+	
+	/**
+	 * Metodo que registra un promotor.
+	 * 
+	 * @param request String con el nombre del prmootor
+	 * @return {@link JsonObject} Respuesta en formato JSON
+	 * @throws {@link OriginacionException}
+	 */
 	@Override
 	public JsonObject altaPromotor(String promotor) {
 		JsonObject resultados = new JsonObject();	
