@@ -41,6 +41,7 @@ class OriginacionControllerTest {
 		assertNotNull(controlador.registro(request));
 		assertNotNull(controlador.modificar(new EstatusSolicitudRequest()));
 		assertNotNull(controlador.dispersar(new DispersionRequest()));
+		assertNotNull(controlador.alta(""));
 		
 		
 	}

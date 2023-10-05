@@ -5,4 +5,5 @@ com\mx\dmx\originacion\exception\custom\ExternalAPiExceptionTest.class
 com\mx\dmx\originacion\errors\test\ErrorsTest.class
 com\mx\dmx\originacion\exception\test\ErrorResponseEntityExceptionHandlerTest.class
 com\mx\dmx\originacion\service\test\OriginacionServiceTest.class
+com\mx\dmx\originacion\client\test\ClienteNotificacionTest.class
 com\mx\dmx\originacion\util\test\UtilTest.class

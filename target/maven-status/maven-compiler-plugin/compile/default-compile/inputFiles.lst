@@ -3,6 +3,7 @@ C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\m
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\controller\HealthController.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\util\Util.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\entity\SolicitudEntity.java
+C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\repository\PromotorRepository.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\util\Constantes.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\entity\CreditoEntity.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\model\EstatusSolicitudRequest.java
@@ -14,6 +15,7 @@ C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\m
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\repository\ErrorSolicitudesLogRepository.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\OriginacionInitServiceApplication.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\model\ClienteModel.java
+C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\client\ClienteNotificacionPromotor.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\model\ErrorDescripcion.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\service\OriginacionServiceImpl.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\config\Config.java
@@ -22,6 +24,7 @@ C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\m
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\repository\ClienteRepository.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\service\IOriginacionService.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\custom\EntityNotFoundException.java
+C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\entity\PromotorEntity.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\entity\ClienteEntity.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\custom\ExternalAPiException.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\entity\ErrorSolicitudesLogEntity.java

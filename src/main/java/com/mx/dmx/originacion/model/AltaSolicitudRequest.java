@@ -13,6 +13,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class AltaSolicitudRequest {
+
 	@NotNull
 	@Valid
 	private String promotor;

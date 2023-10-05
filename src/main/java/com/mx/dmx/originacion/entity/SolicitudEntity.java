@@ -5,6 +5,8 @@ import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Generated;
@@ -71,6 +73,12 @@ public class SolicitudEntity {
 	
 	@Column(name = "fecha_ultimo_cambio")
 	private Date fechaUltimoCambio;
+	
+	@Column(name = "id_promotor")
+	private Long idPromotor;
+	
+	@Column(name = "id_cliente")
+	private Long idCliente;
 
 
 }

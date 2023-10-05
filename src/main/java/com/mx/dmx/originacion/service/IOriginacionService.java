@@ -10,6 +10,7 @@ public interface IOriginacionService {
 	JsonObject inicioOperaciones(AltaSolicitudRequest request);
 	JsonObject modificarEstatus(EstatusSolicitudRequest request);
 	JsonObject dispersion(DispersionRequest request);
+	JsonObject altaPromotor(String promotor);
 
 
 }
