@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.mx.dmx.originacion.client.test.ClienteNotificacionTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.084 s - in com.mx.dmx.originacion.client.test.ClienteNotificacionTest

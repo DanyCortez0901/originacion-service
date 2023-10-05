@@ -5,6 +5,7 @@ package com.mx.dmx.originacion.service.test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
@@ -20,11 +21,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
+import com.mx.dmx.originacion.client.ClienteNotificacionPromotor;
 import com.mx.dmx.originacion.custom.EntityNotFoundException;
 import com.mx.dmx.originacion.custom.OriginacionException;
 import com.mx.dmx.originacion.entity.ClienteEntity;
 import com.mx.dmx.originacion.entity.CreditoEntity;
 import com.mx.dmx.originacion.entity.ErrorSolicitudesLogEntity;
+import com.mx.dmx.originacion.entity.PromotorEntity;
 import com.mx.dmx.originacion.entity.SolicitudEntity;
 import com.mx.dmx.originacion.model.AltaSolicitudRequest;
 import com.mx.dmx.originacion.model.ClienteModel;
@@ -34,6 +37,7 @@ import com.mx.dmx.originacion.model.SolicitudModel;
 import com.mx.dmx.originacion.repository.ClienteRepository;
 import com.mx.dmx.originacion.repository.CreditoRepository;
 import com.mx.dmx.originacion.repository.ErrorSolicitudesLogRepository;
+import com.mx.dmx.originacion.repository.PromotorRepository;
 import com.mx.dmx.originacion.repository.SolicitudRepository;
 import com.mx.dmx.originacion.service.OriginacionServiceImpl;
 import com.mx.dmx.originacion.util.Util;
@@ -59,10 +63,28 @@ class OriginacionServiceTest {
 	private CreditoRepository creditoRepository;
 	
 	@Mock
+	private PromotorRepository promotorRepository;
+	
+	@Mock
     ModelMapper modelMapper;
+	
+	@Mock
+	private ClienteNotificacionPromotor clientePromotor;
 
+    void setup() {
+		when(promotorRepository.findById(any())).thenReturn(Optional.empty());	
+		PromotorEntity entity =  new PromotorEntity();
+		entity.setIdPromotor(1L);
+		entity.setNombre("PROMOTOR");
+		when(promotorRepository.findByNombre(anyString())).thenReturn(entity );	
+    }
+	
 	@Test
-	void inicioOperacionesTest() throws  ParseException{		
+	void inicioOperacionesTest() throws  ParseException{	
+		PromotorEntity entity =  new PromotorEntity();
+		entity.setIdPromotor(1L);
+		entity.setNombre("PROMOTOR");
+		when(promotorRepository.findByNombre(any())).thenReturn(entity);	
 		AltaSolicitudRequest request = new AltaSolicitudRequest();	
 		ClienteModel cliente = new ClienteModel();
 		cliente.setApellidoMaterno("RAMIREZ");
@@ -101,27 +123,51 @@ class OriginacionServiceTest {
 	@Test
 	void dispersionTest() throws  ParseException{		
 		DispersionRequest request = new DispersionRequest();
-			
+		SolicitudEntity entitySolicitud = new SolicitudEntity();
+		entitySolicitud.setIdPromotor(1L);
+		when(solicitudRepository.findById(any())).thenReturn(Optional.of(entitySolicitud));	
 		CreditoEntity solicitudEntity = new CreditoEntity();
 		when(modelMapper.map(eq(request)
 				, ArgumentMatchers.<Class<CreditoEntity>>any())).thenReturn(solicitudEntity);		
 		
+		assertNotNull(service.dispersion(request));	
+		PromotorEntity entity =  new PromotorEntity();
+		entity.setIdPromotor(1L);
+		entity.setNombre("PROMOTOR");
+		when(promotorRepository.findById(any())).thenReturn(Optional.of(entity));
 		assertNotNull(service.dispersion(request));		
 	}
 	@Test
-	void dispersionTest_exception() throws  ParseException{		
+	void dispersionTest_exception() throws  ParseException{	
+		SolicitudEntity entitySolicitud = new SolicitudEntity();
+		entitySolicitud.setIdPromotor(1L);
+		when(solicitudRepository.findById(any())).thenReturn(Optional.of(entitySolicitud));	
 		DispersionRequest request = new DispersionRequest();
 		when(modelMapper.map(eq(request)
 				, ArgumentMatchers.<Class<CreditoEntity>>any())).thenThrow(new IllegalArgumentException("Error"));
 		OriginacionException ex = assertThrows(OriginacionException.class,
 				() -> service.dispersion(request));  	
 	}
-	
 	@Test
-	void modificarEstatusTest() throws  ParseException{		
+	void dispersionTest_exceptionSolicitud() throws  ParseException{	
+		when(solicitudRepository.findById(any())).thenReturn(Optional.empty());	
+		DispersionRequest request = new DispersionRequest();		
+		OriginacionException ex = assertThrows(OriginacionException.class,
+				() -> service.dispersion(request));  	
+	}
+	@Test
+	void modificarEstatusTest() throws  ParseException{			
+		PromotorEntity entity =  new PromotorEntity();
+		entity.setIdPromotor(1L);
+		entity.setNombre("PROMOTOR");
+		when(promotorRepository.findById(any())).thenReturn(Optional.of(entity));
 		EstatusSolicitudRequest request = new EstatusSolicitudRequest();
-		when(solicitudRepository.findById(any())).thenReturn(Optional.of(new SolicitudEntity()));			
-		assertNotNull(service.modificarEstatus(request));		
+		SolicitudEntity solicitud = new SolicitudEntity();
+		solicitud.setIdPromotor(1L);
+		when(solicitudRepository.findById(any())).thenReturn(Optional.of(solicitud));			
+		assertNotNull(service.modificarEstatus(request));
+		when(promotorRepository.findById(any())).thenReturn(Optional.empty());	
+		assertNotNull(service.modificarEstatus(request));
 	}
 	
 	@Test
@@ -147,5 +193,14 @@ class OriginacionServiceTest {
 		
 		when(erroRepository.findByidSolicitud(any())).thenReturn(errores);	
 		assertNotNull(service.modificarEstatus(request));		
+	}
+	
+	
+	@Test
+	void altaPromotorTest() throws  ParseException{	
+		service.altaPromotor("");	
+		when(promotorRepository.save(any())).thenThrow(new IllegalArgumentException("Error"));
+		OriginacionException ex = assertThrows(OriginacionException.class,
+				() -> service.altaPromotor(""));  	
 	}
 }

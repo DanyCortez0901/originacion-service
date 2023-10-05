@@ -8,15 +8,16 @@ com\mx\dmx\originacion\repository\ClienteRepository.class
 com\mx\dmx\originacion\model\DispersionRequest.class
 com\mx\dmx\originacion\entity\CreditoEntity.class
 com\mx\dmx\originacion\repository\ErrorSolicitudesLogRepository.class
+com\mx\dmx\originacion\entity\PromotorEntity.class
 com\mx\dmx\originacion\entity\SolicitudEntity.class
 com\mx\dmx\originacion\jview\DataView$PostView.class
 com\mx\dmx\originacion\entity\ClienteEntity.class
 com\mx\dmx\originacion\service\IOriginacionService.class
 com\mx\dmx\originacion\model\EstatusSolicitudRequest.class
 com\mx\dmx\originacion\service\OriginacionServiceImpl.class
-com\mx\dmx\originacion\config\SwaggerConfig.class
 com\mx\dmx\originacion\model\ErrorDescripcion.class
 com\mx\dmx\originacion\util\Util.class
+com\mx\dmx\originacion\config\Config.class
 com\mx\dmx\originacion\custom\OriginacionException.class
 com\mx\dmx\originacion\util\Constantes.class
 com\mx\dmx\originacion\model\MotivoModel.class
@@ -28,4 +29,6 @@ com\mx\dmx\originacion\model\ClienteModel.class
 com\mx\dmx\originacion\jview\DataView$EdtView.class
 com\mx\dmx\originacion\entity\ErrorSolicitudesLogEntity.class
 com\mx\dmx\originacion\jview\DataView.class
+com\mx\dmx\originacion\client\ClienteNotificacionPromotor.class
 com\mx\dmx\originacion\repository\CreditoRepository.class
+com\mx\dmx\originacion\repository\PromotorRepository.class

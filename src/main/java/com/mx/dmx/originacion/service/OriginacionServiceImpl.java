@@ -12,11 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
+import com.mx.dmx.originacion.client.ClienteNotificacionPromotor;
 import com.mx.dmx.originacion.custom.EntityNotFoundException;
 import com.mx.dmx.originacion.custom.OriginacionException;
 import com.mx.dmx.originacion.entity.ClienteEntity;
 import com.mx.dmx.originacion.entity.CreditoEntity;
 import com.mx.dmx.originacion.entity.ErrorSolicitudesLogEntity;
+import com.mx.dmx.originacion.entity.PromotorEntity;
 import com.mx.dmx.originacion.entity.SolicitudEntity;
 import com.mx.dmx.originacion.model.AltaSolicitudRequest;
 import com.mx.dmx.originacion.model.DispersionRequest;
@@ -24,6 +26,7 @@ import com.mx.dmx.originacion.model.EstatusSolicitudRequest;
 import com.mx.dmx.originacion.repository.ClienteRepository;
 import com.mx.dmx.originacion.repository.CreditoRepository;
 import com.mx.dmx.originacion.repository.ErrorSolicitudesLogRepository;
+import com.mx.dmx.originacion.repository.PromotorRepository;
 import com.mx.dmx.originacion.repository.SolicitudRepository;
 
 import lombok.extern.slf4j.Slf4j;
@@ -43,6 +46,12 @@ public class OriginacionServiceImpl implements IOriginacionService {
 	
 	@Autowired
 	private CreditoRepository creditoRepository;
+	
+	@Autowired
+	private PromotorRepository promotorRepository;
+	
+	@Autowired
+	private ClienteNotificacionPromotor clientePromotor;
 		
     @Autowired
     ModelMapper modelMapper;
@@ -59,16 +68,23 @@ public class OriginacionServiceImpl implements IOriginacionService {
 	public JsonObject inicioOperaciones(AltaSolicitudRequest request) {
 		JsonObject resultados = new JsonObject();	
 		try {
-			SolicitudEntity solicitud = modelMapper.map(request.getSolicitud(), SolicitudEntity.class);
-			solicitud.setEstatus("CREADA");
-			solicitud.setFechaUltimoCambio(new Date());
-			solicitudRepository.save(solicitud);
+
+			PromotorEntity promotor = promotorRepository.findByNombre(request.getPromotor());
 			
 			ClienteEntity cliente = modelMapper.map(request.getCliente(), ClienteEntity.class);
 			clienteRepository.save(cliente);
+			
+			SolicitudEntity solicitud = modelMapper.map(request.getSolicitud(), SolicitudEntity.class);
+			solicitud.setEstatus("CREADA");
+			solicitud.setFechaUltimoCambio(new Date());
+			solicitud.setIdCliente(cliente.getIdCliente());
+			solicitud.setIdPromotor(promotor.getIdPromotor());
+			solicitudRepository.save(solicitud);
+			
+			
 			resultados.put("Solicitud", solicitud);
 			resultados.put("Mensaje", "Solicitud Recibida");
-			//TODO:: envio de notificacion al promotor
+			clientePromotor.notifica(solicitud.getIdSolicitud(), request.getPromotor());
 		} catch (IllegalArgumentException | ConfigurationException | MappingException ex) {
 			String mensaje = "No fue posible traducir el modelo de la solicitud a "
 					+ "entity para su guardado en base de datos(Solicitud): " + ex.getMessage();
@@ -92,7 +108,10 @@ public class OriginacionServiceImpl implements IOriginacionService {
 			resultados.put("Solicitud", solicitud);
 			resultados.put("Mensaje", "Solicitud modificada");
 
-			//TODO:: envio de notificacion al promotor
+
+			Optional<PromotorEntity> promotorOptional = promotorRepository.findById(solicitud.getIdPromotor());
+			if(promotorOptional.isPresent())
+				clientePromotor.notifica(solicitud.getIdSolicitud(), promotorOptional.get().getNombre());
 			return resultados;
 		}
 		
@@ -116,20 +135,28 @@ public class OriginacionServiceImpl implements IOriginacionService {
 		
 		resultados.put("ErrorLog", error);
 		resultados.put("Mensaje", "Solicitud encontrada en log de errores");
-
-		//TODO:: envio de notificacion al promotor
 		return resultados;
 	}
 	@Override
 	public JsonObject dispersion(DispersionRequest request) {
 		JsonObject resultados = new JsonObject();	
 		try {
+			
+			
+			Optional<SolicitudEntity> solicitudOptional = solicitudRepository.findById(request.getIdSolicitud());
+			if(!solicitudOptional.isPresent()) {
+				throw new IllegalArgumentException("No se encontro la solicitud con id: " + request.getIdSolicitud());
+			}
+			SolicitudEntity solicitud = solicitudOptional.get();
 			CreditoEntity creditoDispersado = modelMapper.map(request, CreditoEntity.class);
 			creditoRepository.save(creditoDispersado);
-
 			resultados.put("Credito", creditoDispersado);
 			resultados.put("Mensaje", "Credito Dispersado");
-			//TODO:: envio de notificacion al promotor
+			
+			Optional<PromotorEntity> promotorOptional = promotorRepository.findById(solicitud.getIdPromotor());
+			if(promotorOptional.isPresent())
+				clientePromotor.notifica(request.getIdSolicitud(), promotorOptional.get().getNombre());
+			
 		} catch (IllegalArgumentException | ConfigurationException | MappingException ex) {
 			String mensaje = "No fue posible traducir el modelo de la solicitud a "
 					+ "entity para su guardado en base de datos(Dispersion): " + ex.getMessage();
@@ -142,7 +169,24 @@ public class OriginacionServiceImpl implements IOriginacionService {
 		return resultados;
 	}
 
-
+	@Override
+	public JsonObject altaPromotor(String promotor) {
+		JsonObject resultados = new JsonObject();	
+		try {			
+			PromotorEntity promotorNuevo = new PromotorEntity();
+			promotorNuevo.setNombre(promotor);
+			PromotorEntity promotorGenerado = promotorRepository.save(promotorNuevo);
+			resultados.put("Promotor", promotorGenerado);
+			resultados.put("Mensaje", "Promotor registrado exitosamente");
+		} catch (IllegalArgumentException ex) {
+			String mensaje = "No fue posible guardar al promotor: " + ex.getMessage();
+			log.error(mensaje);
+			erroRepository.save(new ErrorSolicitudesLogEntity(0l,"PROM001", 
+					mensaje,ex.getMessage()));
+			throw new OriginacionException(mensaje, ex);
+		}
+		return resultados;
+	}
 	
 
 }
