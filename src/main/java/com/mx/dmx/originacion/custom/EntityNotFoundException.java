@@ -1,6 +1,6 @@
 package com.mx.dmx.originacion.custom;
 
-public class FormatInputException extends RuntimeException {
+public class EntityNotFoundException extends RuntimeException {
 	
 	/**
 	 * 
@@ -9,7 +9,7 @@ public class FormatInputException extends RuntimeException {
 	
 	public static final String MENSAJE_DEFAULT="Elemento no encontrado";
 	
-	public FormatInputException(String mensaje) {
+	public EntityNotFoundException(String mensaje) {
 	  super(mensaje);
 	}
 

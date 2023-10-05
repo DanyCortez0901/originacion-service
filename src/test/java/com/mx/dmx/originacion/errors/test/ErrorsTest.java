@@ -15,11 +15,11 @@ import com.mx.dmx.originacion.model.ErrorDetalle;
 
 @TestPropertySource(locations = "classpath:application-test.properties")
 @SpringBootTest
-public class ErrorsTest {
+class ErrorsTest {
 
 	
 	@Test
-	public void errorsPOJOs(){
+	void errorsPOJOs(){
 		
 		ErrorDetalle errorDetails = new ErrorDetalle();
 		ErrorDescripcion detail = new ErrorDescripcion();

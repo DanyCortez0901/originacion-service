@@ -11,21 +11,21 @@ import com.mx.dmx.originacion.controller.HealthController;
 
 @TestPropertySource(locations = "classpath:application-test.properties")
 @SpringBootTest
-public class HealthCheckerTest {
+class HealthCheckerTest {
 	
 	@InjectMocks
 	HealthController health;
 	
 	
 	@Test
-	public void healthCheck(){
+	void healthCheck(){
 		
 		assertNotNull(health.healthCheck());
 		
 	}
 	
 	@Test
-	public void healthForceRestart(){
+	void healthForceRestart(){
 		
 		assertNotNull(health.healthForceRestart());
 		assertNotNull(health.healthCheck());

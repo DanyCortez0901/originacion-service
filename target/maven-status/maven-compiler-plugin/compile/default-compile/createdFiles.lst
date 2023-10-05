@@ -3,7 +3,6 @@ com\mx\dmx\originacion\exception\ErrorResponseEntityExceptionHandler.class
 com\mx\dmx\originacion\model\ErrorDetalle.class
 com\mx\dmx\originacion\repository\SolicitudRepository.class
 com\mx\dmx\originacion\controller\HealthController.class
-com\mx\dmx\originacion\custom\FormatInputException.class
 com\mx\dmx\originacion\custom\ExternalAPiException.class
 com\mx\dmx\originacion\repository\ClienteRepository.class
 com\mx\dmx\originacion\model\DispersionRequest.class
@@ -21,6 +20,7 @@ com\mx\dmx\originacion\util\Util.class
 com\mx\dmx\originacion\custom\OriginacionException.class
 com\mx\dmx\originacion\util\Constantes.class
 com\mx\dmx\originacion\model\MotivoModel.class
+com\mx\dmx\originacion\custom\EntityNotFoundException.class
 com\mx\dmx\originacion\model\AltaSolicitudRequest.class
 com\mx\dmx\originacion\controller\OriginacionController.class
 com\mx\dmx\originacion\model\SolicitudModel.class

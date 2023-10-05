@@ -18,7 +18,7 @@ import com.mx.dmx.originacion.repository.ClienteRepository;
 
 @TestPropertySource(locations = "classpath:application-test.properties")
 @SpringBootTest
-public class ClienteEntityTest {
+class ClienteEntityTest {
 
 	@InjectMocks
 	ClienteEntity entity;
@@ -27,7 +27,7 @@ public class ClienteEntityTest {
 	private ClienteRepository bitacora;
 	
 	@Test
-	public void entity() {
+	void entity() {
 		
 		entity = new ClienteEntity();
 		entity.setApellidoMaterno("lopez");

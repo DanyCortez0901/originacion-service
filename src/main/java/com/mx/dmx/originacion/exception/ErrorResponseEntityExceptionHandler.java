@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.mx.dmx.originacion.custom.FormatInputException;
+import com.mx.dmx.originacion.custom.EntityNotFoundException;
 import com.mx.dmx.originacion.custom.OriginacionException;
 import com.mx.dmx.originacion.model.ErrorDescripcion;
 import com.mx.dmx.originacion.model.ErrorDetalle;
@@ -30,17 +30,17 @@ public class ErrorResponseEntityExceptionHandler {
 	public static final String WARNING = "WARNING";
 	public static final String ERROR = "ERROR";
 	public static final String CODIGO_400 = "ORIGINACION0000400";
+	public static final String CODIGO_404 = "ORIGINACION0000404";
 	public static final String CODIGO_403 = "ORIGINACION0000403";
 	public static final String CODIGO_409 = "ORIGINACION0000409";
-	public static final String MENSAJE_AMORTA = "No se crea la BITACORA";
+	public static final String MENSAJE = "No se crea la BITACORA";
 	public static final String MENSAJE_CALCULO = "No se pudo realizar los calculos";
 	public static final String MENSAJE_COMUNICA = "Error de comunicación";
 	public static final String DESC_INPUT_NO_VALIDO = "Datos de entrada invalidos";
 	public static final String DESC_ERROR_OBTENCION = "Error en la obtención de la información";
 	public static final String DESC_FORMULA = "No se logra aplicar la formula";
-	public static final String DESC_NO_CALCULA = "No se logra calcular la BITACORA";
+	public static final String DESC_NO_CALCULA = "No se logro crear la solicitud";
 	public static final String DESC_RESTRICCION = "Falla por restricción de llave foranea";
-	public static final String DESC_RANGO = "Dia de pago fuera de rango";
 
 	/**
 	 * Metodo que muestra el detalle de error de comunicacion.
@@ -74,7 +74,7 @@ public class ErrorResponseEntityExceptionHandler {
 	@ResponseStatus(value = HttpStatus.CONFLICT)
 	public final ErrorDetalle handleBusinessException(DataIntegrityViolationException ex, HttpServletRequest request) {
 		log.error(ERROR_INTERNO, ex);
-		return crearErrorDetalle(CODIGO_409,DESC_RESTRICCION,ex.getMessage(),MENSAJE_AMORTA,WARNING);
+		return crearErrorDetalle(CODIGO_409,DESC_RESTRICCION,ex.getMessage(),MENSAJE,WARNING);
 	}
 
 	
@@ -82,14 +82,14 @@ public class ErrorResponseEntityExceptionHandler {
 	@ResponseStatus(value = HttpStatus.CONFLICT)
 	public final ErrorDetalle handleBusinessException(HttpMessageNotReadableException ex, HttpServletRequest request) {
 		log.error(ERROR_INTERNO, ex);
-		return crearErrorDetalle(CODIGO_409,DESC_INPUT_NO_VALIDO,ex.getMessage(),MENSAJE_AMORTA,WARNING);
+		return crearErrorDetalle(CODIGO_409,DESC_INPUT_NO_VALIDO,ex.getMessage(),MENSAJE,WARNING);
 	}
 	
-	@ExceptionHandler(FormatInputException.class)
-	@ResponseStatus(value = HttpStatus.CONFLICT)
-	public final ErrorDetalle handleBusinessException(FormatInputException ex, HttpServletRequest request) {
+	@ExceptionHandler(EntityNotFoundException.class)
+	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	public final ErrorDetalle handleBusinessException(EntityNotFoundException ex, HttpServletRequest request) {
 		log.error(ERROR_INTERNO, ex);
-		return crearErrorDetalle(CODIGO_400,DESC_INPUT_NO_VALIDO,ex.getMessage(),MENSAJE_AMORTA,WARNING);
+		return crearErrorDetalle(CODIGO_404,"NO SE ENCONTRO LA ENTITY",ex.getMessage(),MENSAJE,WARNING);
 	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)

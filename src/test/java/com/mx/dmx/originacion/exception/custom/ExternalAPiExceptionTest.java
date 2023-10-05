@@ -11,10 +11,10 @@ import org.junit.jupiter.api.Test;
 
 import com.mx.dmx.originacion.custom.ExternalAPiException;
 
-public class ExternalAPiExceptionTest {
+class ExternalAPiExceptionTest {
 
 	@Test
-	public void ExternalAPiExceptionStringException() {
+	void ExternalAPiExceptionStringException() {
 		Exception cause = new RuntimeException("cause exception");
 		String mensaje = "message exception";
 		ExternalAPiException exception = new ExternalAPiException(mensaje, cause);
@@ -25,7 +25,7 @@ public class ExternalAPiExceptionTest {
 	}
 
 	@Test
-	public void ExternalAPiExceptionString() {
+	void ExternalAPiExceptionString() {
 		String mensaje = "message exception";
 		ExternalAPiException exception = new ExternalAPiException(mensaje);
 

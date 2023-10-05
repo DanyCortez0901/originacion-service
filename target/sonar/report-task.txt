@@ -2,5 +2,5 @@ projectKey=com.mx.dmx.originacion:Originacion
 serverUrl=http://localhost:9000
 serverVersion=9.4.0.54424
 dashboardUrl=http://localhost:9000/dashboard?id=com.mx.dmx.originacion%3AOriginacion
-ceTaskId=AYr-VN7by5hDtb-7g0Ra
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYr-VN7by5hDtb-7g0Ra
+ceTaskId=AYr-tTJXy5hDtb-7g0Rh
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYr-tTJXy5hDtb-7g0Rh

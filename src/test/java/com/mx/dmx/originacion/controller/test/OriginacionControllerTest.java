@@ -10,9 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
+import com.mx.dmx.originacion.OriginacionInitServiceApplication;
 import com.mx.dmx.originacion.controller.OriginacionController;
 import com.mx.dmx.originacion.model.AltaSolicitudRequest;
 import com.mx.dmx.originacion.model.ClienteModel;
@@ -21,19 +20,17 @@ import com.mx.dmx.originacion.model.EstatusSolicitudRequest;
 import com.mx.dmx.originacion.service.IOriginacionService;
 
 @TestPropertySource(locations = "classpath:application-test.properties")
-@Sql(scripts = { "classpath:test-schema.sql"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @SpringBootTest
-public class OriginacionControllerTest {
+class OriginacionControllerTest {
 	
 	@InjectMocks
 	OriginacionController controlador;
 	
 	@Mock
 	private IOriginacionService service;
-	
 
 	@Test
-	public void controller() throws  ParseException{		
+	void controller() throws  ParseException{		
 		AltaSolicitudRequest request = new AltaSolicitudRequest();	
 		ClienteModel cliente = new ClienteModel();
 		cliente.setApellidoMaterno("RAMIREZ");
@@ -47,5 +44,9 @@ public class OriginacionControllerTest {
 		
 		
 	}
-	
+    @Test
+    void applicationStarts() {
+    	OriginacionInitServiceApplication.main(new String[]{});
+
+    }
 }

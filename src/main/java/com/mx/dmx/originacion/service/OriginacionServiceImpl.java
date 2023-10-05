@@ -4,7 +4,6 @@ package com.mx.dmx.originacion.service;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ConfigurationException;
 import org.modelmapper.MappingException;
@@ -13,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
+import com.mx.dmx.originacion.custom.EntityNotFoundException;
 import com.mx.dmx.originacion.custom.OriginacionException;
 import com.mx.dmx.originacion.entity.ClienteEntity;
 import com.mx.dmx.originacion.entity.CreditoEntity;
@@ -104,15 +104,15 @@ public class OriginacionServiceImpl implements IOriginacionService {
 					+ String.valueOf(request.getIdSolicitud());
 			log.error(mensaje);
 			erroRepository.save(new ErrorSolicitudesLogEntity(request.getIdSolicitud(),"FIND002",mensaje,""));
-			throw new OriginacionException(mensaje);
+			throw new EntityNotFoundException(mensaje);
 		}
 		
 		ErrorSolicitudesLogEntity error = solicitudLogsList.stream()
 										.sorted((e1,e2) -> e1.getFechaCreacion().compareTo(e2.getFechaCreacion()) * -1)
-										.collect(Collectors.toList())
+										.toList()
 										.get(0);
 				
-		;
+		
 		
 		resultados.put("ErrorLog", error);
 		resultados.put("Mensaje", "Solicitud encontrada en log de errores");

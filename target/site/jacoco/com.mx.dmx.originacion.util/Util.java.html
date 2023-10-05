@@ -2,7 +2,6 @@
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import com.mx.dmx.originacion.custom.OriginacionException;
@@ -22,23 +21,13 @@ public class Util {
 	 * @throws OriginacionException
 	 */
 	public static Date strToDate(String str) {
-<span class="fc" id="L25">		Date dateTime = null;</span>
+<span class="fc" id="L24">		Date dateTime = null;</span>
 		try {
-<span class="fc" id="L27">			dateTime = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm&quot;).parse(str);</span>
-<span class="nc" id="L28">		} catch (ParseException e) {</span>
-<span class="nc" id="L29">			throw new OriginacionException(e.getMessage());</span>
-<span class="fc" id="L30">		}</span>
-<span class="fc" id="L31">		return dateTime;</span>
-	}
-	
-		
-	public static Date sumaDias(Date datetime, int diaSumar) {
-<span class="fc" id="L36">		Calendar cal = Calendar.getInstance();</span>
-<span class="fc" id="L37">		cal.setTime(datetime);</span>
-<span class="fc" id="L38">		cal.setTime(datetime);</span>
-<span class="fc" id="L39">		cal.setTime(datetime);</span>
-<span class="fc" id="L40">		cal.add(Calendar.DAY_OF_MONTH, diaSumar);</span>
-<span class="fc" id="L41">		return cal.getTime();</span>
+<span class="fc" id="L26">			dateTime = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).parse(str);</span>
+<span class="fc" id="L27">		} catch (ParseException e) {</span>
+<span class="fc" id="L28">			throw new OriginacionException(e.getMessage());</span>
+<span class="fc" id="L29">		}</span>
+<span class="fc" id="L30">		return dateTime;</span>
 	}
 
 }
