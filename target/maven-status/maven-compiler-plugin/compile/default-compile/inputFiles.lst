@@ -11,12 +11,12 @@ C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\m
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\jview\DataView.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\model\ErrorDetalle.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\model\SolicitudModel.java
-C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\config\SwaggerConfig.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\repository\ErrorSolicitudesLogRepository.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\OriginacionInitServiceApplication.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\model\ClienteModel.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\model\ErrorDescripcion.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\service\OriginacionServiceImpl.java
+C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\config\Config.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\controller\OriginacionController.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\model\MotivoModel.java
 C:\Users\danie\Documents\Prueba back-end\originacion-service\src\main\java\com\mx\dmx\originacion\repository\ClienteRepository.java
