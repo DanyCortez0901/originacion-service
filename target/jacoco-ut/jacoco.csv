@@ -1,0 +1,14 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Originacion,com.mx.dmx.originacion.config,SwaggerConfig,0,52,0,0,0,15,0,4,0,4
+Originacion,com.mx.dmx.originacion,OriginacionInitServiceApplication,6,3,0,0,2,1,1,1,1,1
+Originacion,com.mx.dmx.originacion.controller,OriginacionController,0,27,0,0,0,4,0,4,0,4
+Originacion,com.mx.dmx.originacion.controller,HealthController,0,46,0,2,0,10,0,5,0,4
+Originacion,com.mx.dmx.originacion.entity,CreditoEntity,3,0,0,0,1,0,1,0,1,0
+Originacion,com.mx.dmx.originacion.exception,ErrorResponseEntityExceptionHandler,137,7,0,0,29,2,8,2,8,2
+Originacion,com.mx.dmx.originacion.service,OriginacionServiceImpl,243,7,4,0,56,2,6,2,4,2
+Originacion,com.mx.dmx.originacion.model,ErrorDetalle,0,28,0,0,0,9,0,5,0,5
+Originacion,com.mx.dmx.originacion.model,ErrorDescripcion,0,53,0,0,0,20,0,13,0,13
+Originacion,com.mx.dmx.originacion.custom,OriginacionException,0,9,0,0,0,4,0,2,0,2
+Originacion,com.mx.dmx.originacion.custom,ExternalAPiException,0,9,0,0,0,4,0,2,0,2
+Originacion,com.mx.dmx.originacion.custom,FormatInputException,4,0,0,0,2,0,1,0,1,0
+Originacion,com.mx.dmx.originacion.util,Util,7,30,0,0,2,10,0,2,0,2

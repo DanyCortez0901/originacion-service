@@ -1,0 +1,8 @@
+com\mx\dmx\originacion\controller\test\HealthCheckerTest.class
+com\mx\dmx\originacion\entity\test\ClienteEntityTest.class
+com\mx\dmx\originacion\controller\test\OriginacionControllerTest.class
+com\mx\dmx\originacion\exception\custom\ExternalAPiExceptionTest.class
+com\mx\dmx\originacion\errors\test\ErrorsTest.class
+com\mx\dmx\originacion\exception\test\ErrorResponseEntityExceptionHandlerTest.class
+com\mx\dmx\originacion\service\test\AmortizacionesServiceData.class
+com\mx\dmx\originacion\util\test\UtilTest.class

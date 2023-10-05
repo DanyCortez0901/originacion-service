@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Util.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Originacion</a> &gt; <a href="index.source.html" class="el_package">com.mx.dmx.originacion.util</a> &gt; <span class="el_source">Util.java</span></div><h1>Util.java</h1><pre class="source lang-java linenums">package com.mx.dmx.originacion.util;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import com.mx.dmx.originacion.custom.OriginacionException;
+
+public class Util {
+	
+	
+	private Util() {
+		super();
+	}
+			
+
+	/**
+	 * Metodo para darle formato de fecha a un String &quot;yyyy-MM-dd HH:mm&quot;.
+	 * @param str String Valor de la fecha.
+	 * @return {@link Date} Fecha
+	 * @throws OriginacionException
+	 */
+	public static Date strToDate(String str) {
+<span class="fc" id="L25">		Date dateTime = null;</span>
+		try {
+<span class="fc" id="L27">			dateTime = new SimpleDateFormat(&quot;yyyy-MM-dd HH:mm&quot;).parse(str);</span>
+<span class="nc" id="L28">		} catch (ParseException e) {</span>
+<span class="nc" id="L29">			throw new OriginacionException(e.getMessage());</span>
+<span class="fc" id="L30">		}</span>
+<span class="fc" id="L31">		return dateTime;</span>
+	}
+	
+		
+	public static Date sumaDias(Date datetime, int diaSumar) {
+<span class="fc" id="L36">		Calendar cal = Calendar.getInstance();</span>
+<span class="fc" id="L37">		cal.setTime(datetime);</span>
+<span class="fc" id="L38">		cal.setTime(datetime);</span>
+<span class="fc" id="L39">		cal.setTime(datetime);</span>
+<span class="fc" id="L40">		cal.add(Calendar.DAY_OF_MONTH, diaSumar);</span>
+<span class="fc" id="L41">		return cal.getTime();</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
